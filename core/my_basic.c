@@ -10615,7 +10615,7 @@ static void _mark_lazy_destroy_string(mb_interpreter_t* s, char* ch) {
 /* Assign a value with another */
 static void _assign_public_value(mb_interpreter_t* s, mb_value_t* tgt, mb_value_t* src, bool_t pit) {
 	_object_t obj;
-	mb_value_t nil;
+	mb_value_t nil_value;
 
 	mb_assert(tgt);
 
@@ -10631,11 +10631,11 @@ static void _assign_public_value(mb_interpreter_t* s, mb_value_t* tgt, mb_value_
 	_public_value_to_internal_object(tgt, &obj);
 	_UNREF(&obj)
 
-	mb_make_nil(nil);
+	mb_make_nil(nil_value);
 	if(!src)
-		src = &nil;
+		src = &nil_value;
 	memcpy(tgt, src, sizeof(mb_value_t));
-	*src = nil;
+	*src = nil_value;
 }
 
 /* Swap two public values */
